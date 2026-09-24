@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudySmart | Class 10</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f5f7fb;
+    color:#172033;
+    transition:.3s;
+}
+
+header{
+    background:white;
+    padding:16px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:10;
+    box-shadow:0 2px 12px #00000012;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+    text-decoration:none;
+    color:#172033;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#4b5563;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#2563eb;
+}
+
+.dark-btn{
+    border:0;
+    background:#eef2ff;
+    padding:10px 13px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.hero{
+    padding:85px 7%;
+    background:linear-gradient(135deg,#eef5ff,#ffffff);
+    text-align:center;
+}
+
+.hero h1{
+    font-size:clamp(40px,7vw,70px);
+    margin-bottom:18px;
+}
+
+.hero h1 span{
+    color:#2563eb;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    font-size:18px;
+    color:#667085;
+    line-height:1.7;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:28px;
+    padding:14px 24px;
+    background:#2563eb;
+    color:white;
+    border:0;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+section{
+    max-width:1100px;
+    margin:auto;
+    padding:65px 7%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:#667085;
+    margin-bottom:35px;
+}
+
+.subjects{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:28px;
+    border-radius:18px;
+    border:1px solid #e5e7eb;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px #00000012;
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#667085;
+    line-height:1.6;
+}
+
+.card button{
+    margin-top:18px;
+    padding:10px 15px;
+    border:0;
+    background:#eff6ff;
+    color:#2563eb;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.progress-box{
+    background:white;
+    padding:28px;
+    border-radius:18px;
+    border:1px solid #e5e7eb;
+    margin-top:35px;
+}
+
+.progress-bar{
+    height:14px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+.progress{
+    width:0%;
+    height:100%;
+    background:#2563eb;
+    transition:1s;
+}
+
+.quiz{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    border:1px solid #e5e7eb;
+}
+
+.quiz h3{
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+.option{
+    width:100%;
+    text-align:left;
+    padding:14px;
+    margin:7px 0;
+    border:1px solid #d1d5db;
+    background:white;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#eff6ff;
+}
+
+#quiz-result{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.articles{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.article{
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    border:1px solid #e5e7eb;
+}
+
+.article h3{
+    margin-bottom:10px;
+}
+
+.article p{
+    color:#667085;
+    line-height:1.6;
+}
+
+footer{
+    background:#111827;
+    color:#9ca3af;
+    text-align:center;
+    padding:35px 20px;
+}
+
+footer strong{
+    color:white;
+}
+
+/* DARK MODE */
+
+body.dark{
+    background:#0f172a;
+    color:#f8fafc;
+}
+
+body.dark header,
+body.dark .card,
+body.dark .progress-box,
+body.dark .quiz,
+body.dark .article,
+body.dark .option{
+    background:#172033;
+    color:#f8fafc;
+    border-color:#334155;
+}
+
+body.dark nav a,
+body.dark .card p,
+body.dark .article p,
+body.dark .section-subtitle,
+body.dark .hero p{
+    color:#aeb8ca;
+}
+
+body.dark .hero{
+    background:#111c32;
+}
+
+body.dark .option{
+    color:white;
+}
+
+@media(max-width:750px){
+
+    header{
+        padding:15px 5%;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+        padding:65px 6%;
+    }
+
+    section{
+        padding:50px 6%;
+    }
+
+    .subjects,
+    .articles{
+        grid-template-columns:1fr;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <a class="logo" href="#">
+        STUDY<span>SMART</span>
+    </a>
+
+    <nav>
+        <a href="#subjects">Subjects</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#articles">Articles</a>
+    </nav>
+
+    <button class="dark-btn" onclick="toggleDark()">
+        🌙
+    </button>
+
+</header>
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <h1>
+        Study <span>Smarter.</span><br>
+        Score Better.
+    </h1>
+
+    <p>
+        Your Class 10 study companion for notes, practice,
+        quizzes and smart preparation.
+    </p>
+
+    <a href="#subjects" class="btn">
+        Start Studying →
+    </a>
+
+</div>
+
+
+<!-- SUBJECTS -->
+
+<section id="subjects">
+
+    <h2 class="section-title">
+        Explore Subjects
+    </h2>
+
+    <p class="section-subtitle">
+        Choose a subject and start learning.
+    </p>
+
+    <div class="subjects">
+
+        <div class="card">
+
+            <div class="icon">📐</div>
+
+            <h3>Mathematics</h3>
+
+            <p>
+                Formulas, concepts, examples and
+                practice questions.
+            </p>
+
+            <button onclick="subjectMessage('Mathematics')">
+                Open Subject
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🔬</div>
+
+            <h3>Science</h3>
+
+            <p>
+                Physics, Chemistry and Biology
+                concepts made easier.
+            </p>
+
+            <button onclick="subjectMessage('Science')">
+                Open Subject
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🌍</div>
+
+            <h3>Social Science</h3>
+
+            <p>
+                History, Geography, Civics and
+                Economics revision.
+            </p>
+
+            <button onclick="subjectMessage('Social Science')">
+                Open Subject
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">📖</div>
+
+            <h3>English</h3>
+
+            <p>
+                Literature, grammar and writing
+                preparation.
+            </p>
+
+            <button onclick="subjectMessage('English')">
+                Open Subject
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">ह</div>
+
+            <h3>Hindi</h3>
+
+            <p>
+                Literature, grammar and important
+                questions.
+            </p>
+
+            <button onclick="subjectMessage('Hindi')">
+                Open Subject
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">📝</div>
+
+            <h3>Sample Papers</h3>
+
+            <p>
+                Practice exam-style questions and
+                improve your preparation.
+            </p>
+
+            <button onclick="subjectMessage('Sample Papers')">
+                Start Practice
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-box">
+
+        <h3>Your Study Progress</h3>
+
+        <p>Complete your first study goal.</p>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <button class="btn" onclick="increaseProgress()">
+            ✓ Complete Goal
+        </button>
+
+        <p id="progressText">0% completed</p>
+
+    </div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section id="quiz">
+
+    <h2 class="section-title">
+        Quick Quiz 🧠
+    </h2>
+
+    <p class="section-subtitle">
+        Test your Class 10 knowledge.
+    </p>
+
+    <div class="quiz">
+
+        <h3>
+            What is the value of sin 90°?
+        </h3>
+
+        <button class="option" onclick="answer(false)">
+            A. 0
+        </button>
+
+        <button class="option" onclick="answer(true)">
+            B. 1
+        </button>
+
+        <button class="option" onclick="answer(false)">
+            C. √3/2
+        </button>
+
+        <button class="option" onclick="answer(false)">
+            D. 1/2
+        </button>
+
+        <div id="quiz-result"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ARTICLES -->
+
+<section id="articles">
+
+    <h2 class="section-title">
+        Latest Articles
+    </h2>
+
+    <p class="section-subtitle">
+        Improve your study habits.
+    </p>
+
+    <div class="articles">
+
+        <div class="article">
+
+            <h3>
+                How to Study in Class 10
+            </h3>
+
+            <p>
+                Learn practical methods for understanding
+                concepts, revising and practising effectively.
+            </p>
+
+            <button class="btn">
+                Read Article
+            </button>
+
+        </div>
+
+
+        <div class="article">
+
+            <h3>
+                How to Make Better Notes
+            </h3>
+
+            <p>
+                Learn how to create short, useful notes
+                that are easy to revise.
+            </p>
+
+            <button class="btn">
+                Read Article
+            </button>
+
+        </div>
+
+
+        <div class="article">
+
+            <h3>
+                How to Prepare for Boards
+            </h3>
+
+            <p>
+                Build a consistent preparation routine
+                and practise exam-style questions.
+            </p>
+
+            <button class="btn">
+                Read Article
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © 2026 <strong>StudySmart</strong>
+    </p>
+
+    <p>
+        Created by Lakshya Pratap Singh
+    </p>
+
+</footer>
+
+
+<script>
+
+function toggleDark(){
+
+    document.body.classList.toggle("dark");
+
+}
+
+
+function subjectMessage(subject){
+
+    alert(
+        subject +
+        " section will be available soon!"
+    );
+
+}
+
+
+let progressValue = 0;
+
+function increaseProgress(){
+
+    progressValue += 20;
+
+    if(progressValue > 100){
+        progressValue = 100;
+    }
+
+    document.getElementById("progress").style.width =
+        progressValue + "%";
+
+    document.getElementById("progressText").innerText =
+        progressValue + "% completed";
+
+}
+
+
+function answer(correct){
+
+    const result =
+        document.getElementById("quiz-result");
+
+    if(correct){
+
+        result.innerText =
+            "✅ Correct! sin 90° = 1";
+
+    }else{
+
+        result.innerText =
+            "❌ Not quite. Try again!";
+
+    }
+
+}
+
+</script>
+
+</body>
+              </html>
